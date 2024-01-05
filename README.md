@@ -10,7 +10,7 @@ Authentication using an IAM user
 docker run -it --rm \
   -e AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY_ID" \
   -e AWS_SECRET_ACCESS_KEY="YOUR_SECRET_ACCESS_KEY" \
-  truemark/aws-cli:latest
+  truemark/aws-flyway:latest
 ```
 
 Alternative example using an IAM user
