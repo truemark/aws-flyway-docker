@@ -15,7 +15,7 @@ docker run -it --rm \
 
 Alternative example using an IAM user
 ```bash
-docker run -it --rm truemark/aws-cli:latest
+docker run -it --rm truemark/aws-flyway:latest
 export AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY_ID"
 export AWS_SECRET_ACCESS_KEY="YOUR_AWS_SECRET_ACCESS_KEY"
 initialize
