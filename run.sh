@@ -13,8 +13,19 @@ function aws_secrets_manager_parser() {
   fi
 
   export FLYWAY_URL=$(aws secretsmanager get-secret-value --secret-id ${AWS_SECRET_NAME} | jq -r '.SecretString' | jq -r '.host')
+  if [ ! -z "${FLYWAY_URL}" ]; then
+    echo -e "\nYour FLYWAY_URL has been set."
+  fi
+
   export FLYWAY_USER=$(aws secretsmanager get-secret-value --secret-id ${AWS_SECRET_NAME} | jq -r '.SecretString' | jq -r '.username')
+  if [ ! -z "${FLYWAY_USER}" ]; then
+      echo "Your FLYWAY_USER has been set."
+  fi
+
   export FLYWAY_PASSWORD=$(aws secretsmanager get-secret-value --secret-id ${AWS_SECRET_NAME} | jq -r '.SecretString' | jq -r '.password')
+  if [ ! -z "${FLYWAY_PASSWORD}" ]; then
+      echo -e "Your FLYWAY_PASSWORD has been set.\n"
+  fi
 
   if [ -z "${FLYWAY_URL}" ] || [ -z "${FLYWAY_USER}" ] || [ -z "${FLYWAY_PASSWORD}" ]; then
     echo "Error: One or more FLYWAY variables did not get set."
