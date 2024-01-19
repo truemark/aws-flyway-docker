@@ -10,7 +10,7 @@ Authentication using an IAM user
 docker run -it --rm \
   -e AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY_ID" \
   -e AWS_SECRET_ACCESS_KEY="YOUR_SECRET_ACCESS_KEY" \
-  -e AWS_SECRET_NAME="YOUR_SECRET_NAME" \
+  -e AWS_SECRET_NAME="AWS_SECRETS_MANAGER_SECRET_NAME" \
   truemark/aws-flyway:latest
 ```
 
@@ -19,7 +19,7 @@ Alternative example using an IAM user
 docker run -it --rm truemark/aws-flyway:latest
 export AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY_ID"
 export AWS_SECRET_ACCESS_KEY="YOUR_AWS_SECRET_ACCESS_KEY"
-export AWS_SECRET_NAME="YOUR_SECRET_NAME" 
+export AWS_SECRET_NAME="AWS_SECRETS_MANAGER_SECRET_NAME" 
 initialize
 ```
 
@@ -30,7 +30,7 @@ docker run -it --rm \
   -e AWS_SECRET_ACCESS_KEY="YOUR_SECRET_ACCESS_KEY" \
   -e AWS_ASSUME_ROLE_ARN="YOUR_ROLE_ARN" \
   -e AWS_ROLE_SESSION_NAME="YOUR_SESSION_NAME" \
-  -e AWS_SECRET_NAME="YOUR_SECRET_NAME" \
+  -e AWS_SECRET_NAME="AWS_SECRETS_MANAGER_SECRET_NAME" \
   truemark/aws-flyway:latest
 ```
 
@@ -41,7 +41,7 @@ docker run -it --rm \
   -e AWS_WEB_IDENTITY_TOKEN="YOUR_OIDC_TOKEN" \
   -e AWS_ASSUME_ROLE_ARN="YOUR_ROLE_ARN" \
   -e AWS_ROLE_SESSION_NAME="YOUR_SESSION_NAME" \
-  -e AWS_SECRET_NAME="YOUR_SECRET_NAME" \
+  -e AWS_SECRET_NAME="AWS_SECRETS_MANAGER_SECRET_NAME" \
   truemark/aws-flyway:latest
 ```
 
