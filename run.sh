@@ -25,11 +25,6 @@ function aws_secrets_manager_parser() {
   if [ ! -z "${FLYWAY_PASSWORD}" ]; then
       echo -e "Your FLYWAY_PASSWORD has been set.\n"
   fi
-
-  if [ -z "${FLYWAY_URL}" ] || [ -z "${FLYWAY_USER}" ] || [ -z "${FLYWAY_PASSWORD}" ]; then
-    echo "Error: One or more FLYWAY variables did not get set."
-    return 1
-  fi
 }
 
 initialize
