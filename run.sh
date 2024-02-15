@@ -8,8 +8,7 @@ source /usr/local/bin/helper.sh
 
 function aws_secrets_manager_parser() {
   if [ -z "${AWS_SECRET_NAME}" ]; then
-    echo "Error: AWS_SECRET_NAME environment variable is not set."
-    return 1
+    echo -e "Error: AWS_SECRET_NAME environment variable is not set.\n Using the credentials that are being passed in."
   fi
 
   export FLYWAY_URL=$(aws secretsmanager get-secret-value --secret-id ${AWS_SECRET_NAME} | jq -r '.SecretString' | jq -r '.host')

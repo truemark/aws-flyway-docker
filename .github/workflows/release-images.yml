@@ -5,9 +5,9 @@ on:
   push:
     branches:
       - main
-  schedule:
+#  schedule:
     # Run at 6PM UTC every Monday
-    - cron: '0 18 * * 1'
+#    - cron: '0 18 * * 1'
 
 permissions:
   id-token: write
@@ -55,7 +55,7 @@ jobs:
           --push \
           --platform linux/arm64,linux/amd64 \
           -f Dockerfile \
-          -t truemark/aws-flyway:${{ github.run_number }}.${{ github.run_attempt }} \
+          -t truemark/aws-flyway:${{ github.run_number }} \
           -t truemark/aws-flyway:latest \
           .
       - name: Copy to ECR
