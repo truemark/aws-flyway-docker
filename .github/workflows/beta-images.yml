@@ -49,10 +49,10 @@ jobs:
             --push \
             --platform linux/arm64,linux/amd64 \
             -f Dockerfile \
-            -t truemark/aws-flyway:beta-${{ github.run_number }}.${{ github.run_attempt }} \
+            -t truemark/aws-flyway:beta-${{ github.run_number }} \
             -t truemark/aws-flyway:beta \
             .
-      - name: Copy beta-${{ env.GIT_VERSION }} to ECR
+      - name: Copy Beta Image to ECR
         uses: truemark/skopeo-copy-action@v1
         with:
           src-image: "docker://truemark/aws-flyway:beta-${{ github.run_number }}"

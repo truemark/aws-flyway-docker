@@ -62,8 +62,8 @@ jobs:
         if: ${{ env.TAG_EXISTS != 'true' }}
         uses: truemark/skopeo-copy-action@v1
         with:
-          src-image: "docker://truemark/aws-flyway:${{ github.run_number }}.${{ github.run_attempt }}"
-          dest-image: "docker://public.ecr.aws/truemark/aws-flyway:${{ github.run_number }}.${{ github.run_attempt }}"
+          src-image: "docker://truemark/aws-flyway:${{ github.run_number }}"
+          dest-image: "docker://public.ecr.aws/truemark/aws-flyway:${{ github.run_number }}"
           src-username: "${{ secrets.DOCKER_HUB_USERNAME }}"
           src-password: "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
           dest-username: "${{ steps.ecr-login.outputs.docker_username_public_ecr_aws }}"
