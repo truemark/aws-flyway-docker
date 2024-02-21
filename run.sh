@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -xe
 # Exit on command failure and unset variables
 set -euo pipefail
 
