@@ -263,6 +263,7 @@ function aws_secrets_manager_parser() {
   if [ ! -z "${FLYWAY_PASSWORD}" ]; then
       echo -e "Your FLYWAY_PASSWORD has been set.\n"
   fi
+  return FLYWAY_USER FLYWAY_PASSWORD FLYWAY_URL
 }
 
 initialize
