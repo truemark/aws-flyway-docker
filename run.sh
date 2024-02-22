@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -xe
 # Exit on command failure and unset variables
 set -euo pipefail
 
@@ -8,6 +7,8 @@ set -euo pipefail
 source /usr/local/bin/helper.sh
 
 function aws_secrets_manager_parser() {
+  echo "Pulling the secret with name ${AWS_SECRET_NAME} from AWS Secrets Manager."
+
   if [ -z "${AWS_SECRET_NAME}" ]; then
     echo -e "Error: AWS_SECRET_NAME environment variable is not set.\n Using the credentials that are being passed in."
   fi
@@ -27,6 +28,8 @@ function aws_secrets_manager_parser() {
       echo -e "Your FLYWAY_PASSWORD has been set.\n"
   fi
 }
+
+set -xe
 
 initialize
 aws_secrets_manager_parser
