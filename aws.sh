@@ -8,7 +8,7 @@ source /usr/local/bin/helper.sh
 
 function secrets_manager_parser() {
   initialize
-  echo "Pulling the secret with name ${AWS_SECRET_NAME} from AWS Secrets Manager."
+  echo -e "\nPulling the secret with name ${AWS_SECRET_NAME} from AWS Secrets Manager."
 
   if [ -z "${AWS_SECRET_NAME}" ]; then
     echo -e "Error: AWS_SECRET_NAME environment variable is not set.\n Using the credentials that are being passed in."
