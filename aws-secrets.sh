@@ -6,7 +6,7 @@ set -euo pipefail
 # Import helper functions
 source /usr/local/bin/helper.sh
 
-function aws_secrets_manager_parser() {
+function secrets_manager_parser() {
   echo "Pulling the secret with name ${AWS_SECRET_NAME} from AWS Secrets Manager."
 
   if [ -z "${AWS_SECRET_NAME}" ]; then
@@ -35,13 +35,13 @@ function aws_secrets_manager_parser() {
 }
 
 initialize
-aws_secrets_manager_parser
+secrets_manager_parser
 
 echo "flyway.url=$FLYWAY_URL" >> ${CONF_FILE_PATH}
 echo "flyway.user=$FLYWAY_USER" >> ${CONF_FILE_PATH}
 echo "flyway.password=$FLYWAY_PASSWORD" >> ${CONF_FILE_PATH}
 
 # Execute command(s)
-for CMD in "${!COMMAND@}"; do
-  eval "${!CMD}"
-done
+#for CMD in "${!COMMAND@}"; do
+#  eval "${!CMD}"
+#done
