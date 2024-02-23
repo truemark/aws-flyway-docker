@@ -21,7 +21,7 @@ function secrets_manager_parser() {
 
   export FLYWAY_URL=$(aws secretsmanager get-secret-value --secret-id ${AWS_SECRET_NAME} | jq -r '.SecretString' | jq -r '.host')
   if [ ! -z "${FLYWAY_URL}" ]; then
-    echo -e "\nAdding the flyway.url to the ${CONF_FILE_PATH} file.\n"
+    echo -e "\nAdding the flyway.url to the ${CONF_FILE_PATH} file."
   fi
 
   export FLYWAY_USER=$(aws secretsmanager get-secret-value --secret-id ${AWS_SECRET_NAME} | jq -r '.SecretString' | jq -r '.username')
