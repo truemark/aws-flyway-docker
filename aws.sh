@@ -7,6 +7,7 @@ set -euo pipefail
 source /usr/local/bin/helper.sh
 
 function secrets_manager_parser() {
+  initialize
   echo "Pulling the secret with name ${AWS_SECRET_NAME} from AWS Secrets Manager."
 
   if [ -z "${AWS_SECRET_NAME}" ]; then
@@ -32,14 +33,12 @@ function secrets_manager_parser() {
   if [ ! -z "${FLYWAY_PASSWORD}" ]; then
       echo -e "Your FLYWAY_PASSWORD has been set.\n"
   fi
+
+  echo "flyway.url=$FLYWAY_URL" >> ${CONF_FILE_PATH}
+  echo "flyway.user=$FLYWAY_USER" >> ${CONF_FILE_PATH}
+  echo "flyway.password=$FLYWAY_PASSWORD" >> ${CONF_FILE_PATH}
+
 }
-
-initialize
-secrets_manager_parser
-
-echo "flyway.url=$FLYWAY_URL" >> ${CONF_FILE_PATH}
-echo "flyway.user=$FLYWAY_USER" >> ${CONF_FILE_PATH}
-echo "flyway.password=$FLYWAY_PASSWORD" >> ${CONF_FILE_PATH}
 
 # Execute command(s)
 #for CMD in "${!COMMAND@}"; do
