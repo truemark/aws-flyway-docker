@@ -6,7 +6,7 @@ RUN unzip awscliv2.zip
 RUN ./aws/install
 COPY --from=truemark/jq:latest /usr/local/ /usr/local/
 COPY helper.sh /usr/local/bin/helper.sh
-COPY aws.sh /usr/local/bin/aws.sh
-RUN chmod +x /usr/local/bin/aws.sh
+COPY secrets-manager.sh /usr/local/bin/secrets-manager.sh
+RUN chmod +x /usr/local/bin/secrets-manager.sh
 
 ENTRYPOINT ["/bin/bash"]

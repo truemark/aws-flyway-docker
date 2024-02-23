@@ -6,9 +6,10 @@ set -euo pipefail
 # Import helper functions
 source /usr/local/bin/helper.sh
 
-function secrets_manager_parser() {
+function parser() {
   initialize
   echo -e "\nPulling the secret with name ${AWS_SECRET_NAME} from AWS Secrets Manager."
+  export SECRET_INFO=$(aws secretsmanager get-secret-value --secret-id ${AWS_SECRET_NAME})
 
   if [ -z "${AWS_SECRET_NAME}" ]; then
     echo -e "Error: AWS_SECRET_NAME environment variable is not set.\n Using the credentials that are being passed in."
@@ -19,19 +20,19 @@ function secrets_manager_parser() {
     exit 1
   fi
 
-  export FLYWAY_URL=$(aws secretsmanager get-secret-value --secret-id ${AWS_SECRET_NAME} | jq -r '.SecretString' | jq -r '.host')
+  export FLYWAY_URL=$(echo ${SECRET_INFO} | jq -r '.SecretString' | jq -r '.host')
   if [ ! -z "${FLYWAY_URL}" ]; then
-    echo -e "\nAdding the flyway.url to the conf file."
+    echo "Adding the flyway.url to the conf file."
   fi
 
-  export FLYWAY_USER=$(aws secretsmanager get-secret-value --secret-id ${AWS_SECRET_NAME} | jq -r '.SecretString' | jq -r '.username')
+  export FLYWAY_USER=$(echo ${SECRET_INFO} | jq -r '.SecretString' | jq -r '.username')
   if [ ! -z "${FLYWAY_USER}" ]; then
-      echo "Adding the flyway.user to the conf file.\n"
+      echo "Adding the flyway.user to the conf file."
   fi
 
-  export FLYWAY_PASSWORD=$(aws secretsmanager get-secret-value --secret-id ${AWS_SECRET_NAME} | jq -r '.SecretString' | jq -r '.password')
+  export FLYWAY_PASSWORD=$(echo ${SECRET_INFO} | jq -r '.SecretString' | jq -r '.password')
   if [ ! -z "${FLYWAY_PASSWORD}" ]; then
-      echo -e "Adding the flyway.password to the conf file.\n"
+      echo "Adding the flyway.password to the conf file."
   fi
 
   echo "flyway.url=$FLYWAY_URL" >> ${CONF_FILE_PATH}
@@ -40,12 +41,7 @@ function secrets_manager_parser() {
 
 }
 
-if [[ "$1" == "secrets_manager_parser" ]]; then
+if [[ "$1" == "parser" ]]; then
     # Call the function
-    secrets_manager_parser
+    parser
 fi
-
-# Execute command(s)
-#for CMD in "${!COMMAND@}"; do
-#  eval "${!CMD}"
-#done
