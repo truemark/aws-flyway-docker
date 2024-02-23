@@ -40,6 +40,11 @@ function secrets_manager_parser() {
 
 }
 
+if [[ "$1" == "secrets_manager_parser" ]]; then
+    # Call the function
+    secrets_manager_parser
+fi
+
 # Execute command(s)
 #for CMD in "${!COMMAND@}"; do
 #  eval "${!CMD}"
