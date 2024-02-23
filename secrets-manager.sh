@@ -35,7 +35,7 @@ function parser() {
       echo "Adding the flyway.password to the conf file."
   fi
 
-  echo "flyway.url=jdbc:mysql://${FLYWAY_URL}:3306" >> ${CONF_FILE_PATH}
+  echo "flyway.url=jdbc:mysql://${FLYWAY_URL}" >> ${CONF_FILE_PATH}
   echo "flyway.user=${FLYWAY_USER}" >> ${CONF_FILE_PATH}
   echo "flyway.password=${FLYWAY_PASSWORD}" >> ${CONF_FILE_PATH}
 
